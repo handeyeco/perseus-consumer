@@ -53,11 +53,7 @@ const dependencies: PerseusDependencies = {
 Dependencies.setDependencies(dependencies);
 
 function App() {
-  return (
-    <>
-      <PerseusChrome />
-    </>
-  );
+  return <PerseusChrome />;
 }
 
 export default App;

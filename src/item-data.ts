@@ -12,14 +12,14 @@ export const dropdownItemData: PerseusItem = {
         graded: true,
         options: {
           static: false,
-          placeholder: "greater/less than or equal to",
+          placeholder: "pick an answer",
           choices: [
             {
-              content: "greater than or equal to",
+              content: "this is the incorrect answer",
               correct: false,
             },
             {
-              content: "less than or equal to",
+              content: "this is the correct answer",
               correct: true,
             },
           ],
