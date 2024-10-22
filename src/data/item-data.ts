@@ -1,8 +1,9 @@
 import { PerseusItem } from "@khanacademy/perseus";
 
-export const dropdownItemData: PerseusItem = {
+const itemData: PerseusItem = {
   question: {
-    content: "[[☃ dropdown 1]]",
+    content:
+      "This is an example of a built-in Perseus widget:\n\n[[☃ dropdown 1]]\n\nThis is an example of a custom Perseus widget:\n\n[[☃ custom 1]]\n\nThey have to both be correct for this to count as correct.",
     images: {},
     widgets: {
       "dropdown 1": {
@@ -29,6 +30,30 @@ export const dropdownItemData: PerseusItem = {
           minor: 0,
         },
       },
+      // @ts-expect-error - PerseusWidgetsMap is too strongly typed for custom widgets
+      "custom 1": {
+        type: "custom",
+        alignment: "default",
+        static: false,
+        graded: true,
+        options: {
+          buttons: [
+            {
+              content: "Incorrect",
+              variation: "destructive",
+              correct: false,
+            },
+            {
+              content: "Correct",
+              correct: true,
+            },
+          ],
+        },
+        version: {
+          major: 0,
+          minor: 0,
+        },
+      },
     },
   },
   answer: null,
@@ -39,3 +64,5 @@ export const dropdownItemData: PerseusItem = {
   },
   hints: [],
 };
+
+export default itemData;

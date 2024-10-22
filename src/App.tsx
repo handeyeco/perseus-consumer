@@ -1,58 +1,25 @@
-import { Dependencies } from "@khanacademy/perseus";
-import type { PerseusDependencies } from "@khanacademy/perseus";
+import { Dependencies, Widgets } from "@khanacademy/perseus";
 import "./App.css";
 import PerseusChrome from "./PerseusChrome";
-
-const noop = () => {};
-
-type TeXProps = {
-  children: string;
-};
-
-function TeX(props: TeXProps) {
-  return props.children;
-}
-
-function staticUrl(maybeRelativeUrl: string): string;
-function staticUrl(maybeRelativeUrl?: undefined | null): undefined | null;
-function staticUrl(maybeRelativeUrl?: string | undefined | null) {
-  return maybeRelativeUrl;
-}
-
-const dependencies: PerseusDependencies = {
-  JIPT: {
-    useJIPT: false,
-  },
-  isDevServer: false,
-  kaLocale: "en",
-  isMobile: false,
-  Log: {
-    log: noop,
-    error: noop,
-  },
-  staticUrl,
-  useVideo: noop,
-  InitialRequestUrl: {
-    origin: "",
-    host: "",
-    protocol: "",
-  },
-  rendererTranslationComponents: {
-    addComponent: () => 0,
-    removeComponentAtIndex: noop,
-  },
-  svgImageJiptLabels: {
-    addLabel: noop,
-  },
-  graphieMovablesJiptLabels: {
-    addLabel: noop,
-  },
-  TeX,
-};
+import CustomWidget from "./CustomWidget";
+import { useEffect, useState } from "react";
+import dependencies from "./data/dependecies";
 
 Dependencies.setDependencies(dependencies);
 
+Widgets.registerWidget("custom", CustomWidget);
+
 function App() {
+  const [mounted, setMounted] = useState<boolean>(false);
+
+  // there seems to be a problem with Perseus
+  // having stale state when mounting
+  useEffect(() => {
+    if (!mounted) {
+      setMounted(true);
+    }
+  }, [mounted, setMounted]);
+
   return <PerseusChrome />;
 }
 

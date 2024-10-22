@@ -7,13 +7,16 @@ import type {
   ServerItemRendererComponent,
 } from "@khanacademy/perseus";
 import Button from "@khanacademy/wonder-blocks-button";
-import { dropdownItemData } from "./data/item-data";
+// import { dropdownData } from "./data/dropdown-data";
 import { mockStrings } from "./data/mock-strings";
 import { useRef, useState } from "react";
+import itemData from "./data/item-data";
+
+type CheckState = "no attempt" | "invalid" | "incorrect" | "correct";
 
 function PerseusChrome() {
   const rendererRef = useRef<ServerItemRendererComponent | null>(null);
-  const [correct, setCorrect] = useState<boolean | null>(null);
+  const [checkState, setCheckState] = useState<CheckState>("no attempt");
 
   const apiOptions: APIOptions = {};
   const dependencies = {
@@ -27,13 +30,14 @@ function PerseusChrome() {
 
     const score = rendererRef.current.scoreInput();
 
-    setCorrect(score.correct);
+    setCheckState(
+      score.empty ? "invalid" : score.correct ? "correct" : "incorrect"
+    );
   }
 
   function getCorrectnessMessage() {
-    if (correct == null) return "No attempt yet";
-    if (correct === false) return "Last attempt was incorrect";
-    if (correct === true) return "Last attempt was correct";
+    if (checkState === "no attempt") return "No attempt yet";
+    return `Last attempt was: ${checkState}`;
   }
 
   return (
@@ -43,7 +47,7 @@ function PerseusChrome() {
           ref={(node) => {
             rendererRef.current = node;
           }}
-          item={dropdownItemData}
+          item={itemData}
           apiOptions={apiOptions}
           dependencies={dependencies}
         />
