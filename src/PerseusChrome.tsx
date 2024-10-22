@@ -7,8 +7,8 @@ import type {
   ServerItemRendererComponent,
 } from "@khanacademy/perseus";
 import Button from "@khanacademy/wonder-blocks-button";
-import { dropdownItemData } from "./item-data";
-import { mockStrings } from "./mock-strings";
+import { dropdownItemData } from "./data/item-data";
+import { mockStrings } from "./data/mock-strings";
 import { useRef, useState } from "react";
 
 function PerseusChrome() {
