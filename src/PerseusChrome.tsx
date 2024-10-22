@@ -1,15 +1,13 @@
+import { useRef, useState } from "react";
 import {
   ServerItemRenderer,
   PerseusI18nContextProvider,
-} from "@khanacademy/perseus";
-import type {
   APIOptions,
   ServerItemRendererComponent,
 } from "@khanacademy/perseus";
 import Button from "@khanacademy/wonder-blocks-button";
-// import { dropdownData } from "./data/dropdown-data";
+
 import { mockStrings } from "./data/mock-strings";
-import { useRef, useState } from "react";
 import itemData from "./data/item-data";
 
 type CheckState = "no attempt" | "invalid" | "incorrect" | "correct";

@@ -1,6 +1,6 @@
+import { Component } from "react";
 import Button from "@khanacademy/wonder-blocks-button";
 import { WidgetExports } from "@khanacademy/perseus";
-import { Component } from "react";
 
 type ButtonOptions = {
   content: string;

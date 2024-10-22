@@ -1,8 +1,8 @@
+import { useEffect, useState } from "react";
 import { Dependencies, Widgets } from "@khanacademy/perseus";
-import "./App.css";
+
 import PerseusChrome from "./PerseusChrome";
 import CustomWidget from "./CustomWidget";
-import { useEffect, useState } from "react";
 import dependencies from "./data/dependecies";
 
 Dependencies.setDependencies(dependencies);
