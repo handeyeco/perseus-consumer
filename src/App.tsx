@@ -3,9 +3,9 @@ import { Dependencies, Widgets } from "@khanacademy/perseus";
 
 import PerseusChrome from "./PerseusChrome";
 import CustomWidget from "./CustomWidget";
-import dependencies from "./data/dependecies";
+import { perseusDependencies } from "./data/dependencies";
 
-Dependencies.setDependencies(dependencies);
+Dependencies.setDependencies(perseusDependencies);
 
 Widgets.registerWidget("custom", CustomWidget);
 

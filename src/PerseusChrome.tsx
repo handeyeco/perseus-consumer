@@ -2,26 +2,19 @@ import { useRef, useState } from "react";
 import {
   ServerItemRenderer,
   PerseusI18nContextProvider,
-  APIOptions,
   ServerItemRendererComponent,
 } from "@khanacademy/perseus";
 import Button from "@khanacademy/wonder-blocks-button";
 
 import { mockStrings } from "./data/mock-strings";
 import itemData from "./data/item-data";
+import { sirDependencies } from "./data/dependencies";
 
 type CheckState = "no attempt" | "invalid" | "incorrect" | "correct";
 
 function PerseusChrome() {
   const rendererRef = useRef<ServerItemRendererComponent | null>(null);
   const [checkState, setCheckState] = useState<CheckState>("no attempt");
-
-  const apiOptions: APIOptions = {};
-  const dependencies = {
-    analytics: {
-      onAnalyticsEvent: () => new Promise<void>((resolve) => resolve()),
-    },
-  };
 
   function checkAnswer() {
     if (!rendererRef.current) return;
@@ -46,8 +39,7 @@ function PerseusChrome() {
             rendererRef.current = node;
           }}
           item={itemData}
-          apiOptions={apiOptions}
-          dependencies={dependencies}
+          dependencies={sirDependencies}
         />
       </PerseusI18nContextProvider>
       <p>{getCorrectnessMessage()}</p>

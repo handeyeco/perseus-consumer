@@ -16,7 +16,7 @@ function staticUrl(maybeRelativeUrl?: string | undefined | null) {
   return maybeRelativeUrl;
 }
 
-const dependencies: PerseusDependencies = {
+export const perseusDependencies: PerseusDependencies = {
   JIPT: {
     useJIPT: false,
   },
@@ -47,4 +47,8 @@ const dependencies: PerseusDependencies = {
   TeX,
 };
 
-export default dependencies;
+export const sirDependencies = {
+  analytics: {
+    onAnalyticsEvent: () => new Promise<void>((resolve) => resolve()),
+  },
+};
